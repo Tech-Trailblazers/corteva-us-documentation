@@ -244,7 +244,6 @@ def main() -> None:
         pdf_links = remove_duplicates_from_slice(
             provided_slice=pdf_links
         )  # Remove duplicates
-        ammount_of_pdf: int = len(pdf_links)  # Get count of PDFs
 
         for pdf_link in pdf_links:  # For each PDF link
             if not validate_url(given_url=pdf_link):
@@ -252,8 +251,6 @@ def main() -> None:
                 # print(f"Invalid URL: {pdf_link}")
             filename: str = url_to_filename(url=pdf_link)  # Extract filename from URL
             output_dir: str = os.path.abspath(path="PDFs")  # Define output directory
-            ammount_of_pdf -= 1  # Decrement remaining count
-            print(f"Remaining PDF links: {ammount_of_pdf}")  # Log progress
             download_single_pdf(
                 url=pdf_link, filename=filename, output_folder=output_dir
             )  # Download PDF
